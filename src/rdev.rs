@@ -335,6 +335,7 @@ pub enum EventType {
 /// The Unicode information of input.
 #[derive(Debug, Clone, PartialEq, Default)]
 #[cfg_attr(feature = "serialize", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "typescript", derive(TS), ts(export))]
 pub struct UnicodeInfo {
     pub name: Option<String>,
     pub unicode: Vec<u16>,
@@ -349,7 +350,9 @@ pub struct UnicodeInfo {
 /// a dead key, and the raw letter instead of accentuated letter.
 #[derive(Debug, Clone, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "typescript", derive(TS), ts(export))]
 pub struct Event {
+    #[cfg_attr(feature = "typescript", ts(type = "any"))]
     pub time: SystemTime,
     pub unicode: Option<UnicodeInfo>,
     pub event_type: EventType,
