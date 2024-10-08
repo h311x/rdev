@@ -310,26 +310,26 @@ pub enum Button {
 pub enum EventType {
     /// The keys correspond to a standard qwerty layout, they don't correspond
     /// To the actual letter a user would use, that requires some layout logic to be added.
+    #[cfg_attr(feature = "typescript", ts(inline))]
     KeyPress(Key),
+    #[cfg_attr(feature = "typescript", ts(inline))]
     KeyRelease(Key),
     /// Mouse Button
+    #[cfg_attr(feature = "typescript", ts(inline))]
     ButtonPress(Button),
+    #[cfg_attr(feature = "typescript", ts(inline))]
     ButtonRelease(Button),
     /// Values in pixels. `EventType::MouseMove{x: 0, y: 0}` corresponds to the
     /// top left corner, with x increasing downward and y increasing rightward
-    MouseMove {
-        x: f64,
-        y: f64,
-    },
+    #[cfg_attr(feature = "typescript", ts(inline))]
+    MouseMove { x: f64, y: f64 },
     /// `delta_y` represents vertical scroll and `delta_x` represents horizontal scroll.
     /// Positive values correspond to scrolling up or right and negative values
     /// correspond to scrolling down or left
     /// Note: Linux does not support horizontal scroll. When simulating scroll on Linux,
     /// only the sign of delta_y is considered, and not the magnitude to determine wheelup or wheeldown.
-    Wheel {
-        delta_x: i64,
-        delta_y: i64,
-    },
+    #[cfg_attr(feature = "typescript", ts(inline))]
+    Wheel { delta_x: i64, delta_y: i64 },
 }
 
 /// The Unicode information of input.
@@ -355,7 +355,6 @@ pub struct Event {
     #[cfg_attr(feature = "typescript", ts(type = "any"))]
     pub time: SystemTime,
     pub unicode: Option<UnicodeInfo>,
-    #[cfg_attr(feature = "typescript", ts(inline))]
     pub event_type: EventType,
     // Linux: keysym
     // WIndows: vkcod
