@@ -355,6 +355,7 @@ pub struct Event {
     #[cfg_attr(feature = "typescript", ts(type = "any"))]
     pub time: SystemTime,
     pub unicode: Option<UnicodeInfo>,
+    #[cfg_attr(feature = "typescript", ts(inline))]
     pub event_type: EventType,
     // Linux: keysym
     // WIndows: vkcod
